@@ -1,0 +1,13 @@
+{
+  "name": "pskills",
+  "owner": {
+    "name": "pxc0de"
+  },
+  "plugins": [
+    {
+      "name": "pskills",
+      "source": "./",
+      "description": "A collection of agent skills in the standard SKILL.md format, usable in Claude Code, Codex, Cursor, pi and other agents."
+    }
+  ]
+}
