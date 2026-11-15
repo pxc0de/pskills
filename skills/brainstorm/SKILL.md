@@ -1,12 +1,12 @@
 ---
 name: brainstorm
-description: Think an idea through with the user one decision at a time, in plain language. Each question comes with a recommended answer and with approaches that existing products took to the same problem. The session ends with a written brief that an independent reviewer can critique. Run only when the user invokes it.
+description: Think an idea through with the user one decision at a time, in plain language. Each question comes with a recommended answer and with approaches that existing products took to the same problem. The session ends with a written idea file, which the refine skill turns into a final design. Run only when the user invokes it.
 disable-model-invocation: true
 ---
 
 # Brainstorm
 
-Interview the user about their idea until you both understand it the same way. Continue until you would not have to guess at any part of it. Then give them a written brief that a reviewer who missed the session can critique.
+Interview the user about their idea until you both understand it the same way. Continue until you would not have to guess at any part of it. Then give them a written idea file that a reader who missed the session can refine into a design.
 
 Run this skill only when the user asks for it by name.
 
@@ -75,23 +75,23 @@ Do not ask the user for anything you can look up, such as what the repository co
 
 Ask the user about every decision, including the ones that look obvious to you. Users are surprised later by decisions an agent made without asking.
 
-## Write the brief as you go
+## Write the idea file as you go
 
-After each round, write the settled decisions to the brief file. A session can end without warning, and a decision that exists only in the chat is lost with it.
+After each round, write the settled decisions to the idea file. A session can end without warning, and a decision that exists only in the chat is lost with it.
 
-Write to `docs/brainstorm/<short-topic-name>.md` in the current project unless the user names another location. Use the layout in [brief-template.md](./brief-template.md). Tell the user the path the first time you write the file.
+Write to `docs/idea.md` in the current project unless the user names another location. If that file already holds a different idea, write to `docs/<short-topic-name>/idea.md`. Use the layout in [idea-template.md](./idea-template.md). Tell the user the path the first time you write the file.
 
-For each decision, record what the user chose, why, which options they turned down, and which products do it the same way. The brief's reader was not in the session and has the job of disagreeing, so they need the rejected options as much as the chosen ones.
+For each decision, record what the user chose, why, which options they turned down, and which products do it the same way. The idea file's reader was not in the session and has the job of disagreeing, so they need the rejected options as much as the chosen ones.
 
 ## Finish
 
 The session is complete when you have no question left to ask.
 
-1. Fill in the last two sections of the brief. List the claims nobody verified and the questions the session did not reach.
-2. Give the user a short summary of the decisions and ask whether it matches their understanding. Correct the brief if it does not.
-3. Tell the user the brief is ready for critique. Recommend that they open a new session and run the `critique` skill on the brief. A reviewer who followed the interview has already accepted each answer, so the same session should not review it.
+1. Fill in the last two sections of the idea file. List the claims nobody verified and the questions the session did not reach.
+2. Give the user a short summary of the decisions and ask whether it matches their understanding. Correct the idea file if it does not.
+3. Tell the user the idea file is ready to refine. Recommend that they open a new session and run the `refine` skill on it, which checks the idea and writes `design.md`. A reviewer who followed the interview has already accepted each answer, so the same session should not refine it.
 
-Do not start building. The brief is the only output.
+Do not start building, and do not write a design. The idea file is the only output.
 
 ## Credit
 

@@ -1,11 +1,11 @@
-# Brief template
+# Idea template
 
 Use this layout for the file that `brainstorm` writes. Leave out a section that has no content. Write for a reader who was not in the session.
 
 ```markdown
-# <Idea name> brief (draft, unreviewed)
+# <Idea name> idea (draft, not yet refined)
 
-Status: outcome of a brainstorm on <date>. Nobody has built or reviewed any of it. Every decision is open to challenge.
+Status: outcome of a brainstorm on <date>. Nobody has built or reviewed any of it. Every decision is open to challenge. The `refine` skill turns this file into `design.md`.
 
 ## What it is
 
@@ -48,9 +48,9 @@ For each product, write what it does about the questions above and where you rea
 
 ## Not verified
 
-<Claims the design depends on that nobody has tested or looked up. Write one line for each, with what would settle it.>
+<Claims the idea depends on that nobody has tested or looked up. Write one line for each, with what would settle it.>
 
 ## Not discussed
 
-<Questions the session did not reach. A reviewer should start here.>
+<Questions the session did not reach. The `refine` skill starts here.>
 ```

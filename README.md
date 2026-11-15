@@ -4,9 +4,9 @@ My collection of agent skills. Each skill is a folder with a `SKILL.md` file in 
 
 | Skill | What it does |
 | --- | --- |
-| `brainstorm` | Interviews you about an idea one decision at a time, in plain language. Each question comes with a recommended answer and with approaches that existing products took. Writes a brief that an independent reviewer can critique. |
+| `brainstorm` | Interviews you about an idea one decision at a time, in plain language. Each question comes with a recommended answer and with approaches that existing products took. Writes an idea file. |
 | `inspiration` | Answers a "how should we do this?" question by checking how existing products solved it, then gives options and a recommendation for your project. |
-| `critique` | Reviews a brief in a new session as an independent reviewer. Checks the claims it depends on, finds the decisions most likely to be wrong, and corrects the brief with you. |
+| `refine` | Turns an idea file into a final design in a new session. Checks the claims it depends on, walks through the product as its user, proposes fixes, cuts and concrete answers for what is vague, and writes `design.md` from the ones you accept. |
 | `writing` | Writes or edits prose so that it is plain, makes its point early, and has none of the patterns that mark text as machine-written. |
 | `commit` | Commits the current changes with a `subsystem: summary` message and a prose description, authored by you alone with no co-author or tool attribution. |
 
@@ -20,7 +20,7 @@ For any supported agent, run this in your project.
 npx skills add pxc0de/pskills
 ```
 
-The installer asks which agent you use and puts the skills in the folder that agent reads. You can also copy the folders under `skills/` into your agent's skills folder by hand. Install `brainstorm` and `inspiration` together, because `brainstorm` reads `inspiration` from the neighbouring folder.
+The installer asks which agent you use and puts the skills in the folder that agent reads. You can also copy the folders under `skills/` into your agent's skills folder by hand. Install `inspiration` together with `brainstorm` and `refine`, because both read `inspiration` from the neighbouring folder.
 
 In Claude Code you can install the collection as a plugin instead.
 
@@ -42,10 +42,10 @@ Invoke a skill by name, in whatever way your agent provides. In Claude Code that
 
 When you install the collection as a Claude Code plugin, each command takes the `pskills:` prefix, as in `/pskills:brainstorm`.
 
-`brainstorm` writes its brief to `docs/brainstorm/<topic>.md` in the current project. For an independent critique, open a new session and run `critique` on that file.
+`brainstorm` writes the idea to `docs/idea.md` in the current project. To turn it into a design, open a new session and run `refine` on that file. `refine` writes `docs/design.md` beside it and leaves the idea file unchanged.
 
 ```
-/critique docs/brainstorm/personal-assistant.md
+/refine docs/idea.md
 ```
 
 ## Credits

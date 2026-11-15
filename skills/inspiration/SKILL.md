@@ -87,6 +87,6 @@ Sources: <links to the files or pages you read>
 
 ## Short form
 
-Another skill can call this one for a single question inside a longer conversation. `brainstorm` does this before it asks each question. Do the same research and return less. Give two or three lines on what other products do, each labelled with how you know it, and name the approaches that are good enough to offer as options. The calling skill presents them to the user.
+Another skill can call this one for a single question inside a longer conversation. `brainstorm` does this before it asks each question, and `refine` does it for a proposal. Do the same research and return less. Give two or three lines on what other products do, each labelled with how you know it, and name the approaches that are good enough to offer as options. The calling skill presents them to the user.
 
 Match the research effort to the question. Read a repository for a decision that shapes the whole design. Take a quick look for a small one.
