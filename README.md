@@ -4,9 +4,9 @@ My collection of agent skills. Each skill is a folder with a `SKILL.md` file in 
 
 | Skill | What it does |
 | --- | --- |
-| `brainstorm` | Interviews you about an idea one decision at a time, in plain language. Each question comes with a recommended answer and with approaches that existing products took. Writes an idea file. |
+| `brainstorm` | Talks an idea through with you until it is clear. Looks at what already exists, finds the centre of the idea and its edges, offers its own suggestions for you to accept or veto, and keeps a map of the idea as it forms. Writes an idea file that says what to build and why. |
 | `inspiration` | Answers a "how should we do this?" question by checking how existing products solved it, then gives options and a recommendation for your project. |
-| `refine` | Turns an idea file into a final design in a new session. Checks the claims it depends on, walks through the product as its user, proposes fixes, cuts and concrete answers for what is vague, and writes `design.md` from the ones you accept. |
+| `refine` | Turns an idea file into a final design by interviewing you. Checks the claims the idea depends on, walks through the product as its user, then asks you every design decision in rounds, as one engineer asks another. A term from outside your field is explained once, and nothing is simplified. Each question comes with a recommended answer and with approaches that existing products took. Writes `design.md`. |
 | `writing` | Writes or edits prose so that it is plain, makes its point early, and has none of the patterns that mark text as machine-written. |
 | `commit` | Commits the current changes with a `subsystem: summary` message and a prose description, authored by you alone with no co-author or tool attribution. |
 
@@ -42,7 +42,7 @@ Invoke a skill by name, in whatever way your agent provides. In Claude Code that
 
 When you install the collection as a Claude Code plugin, each command takes the `pskills:` prefix, as in `/pskills:brainstorm`.
 
-`brainstorm` writes the idea to `docs/idea.md` in the current project. To turn it into a design, open a new session and run `refine` on that file. `refine` writes `docs/design.md` beside it and leaves the idea file unchanged.
+`brainstorm` and `refine` work as a pair. `brainstorm` is a conversation about what to build and why, and it writes the result to `docs/idea.md` in the current project. `refine` is an interview about how it should work. Open a new session and run it on the idea file. It writes `docs/design.md` beside it and leaves the idea file unchanged.
 
 ```
 /refine docs/idea.md
@@ -50,6 +50,6 @@ When you install the collection as a Claude Code plugin, each command takes the 
 
 ## Credits
 
-- `brainstorm` builds on the grilling skills in [mattpocock/skills](https://github.com/mattpocock/skills) by Matt Pocock.
+- `refine` builds on the grilling skills in [mattpocock/skills](https://github.com/mattpocock/skills) by Matt Pocock.
 - `commit` takes its message format and rules from the commit message skill in [Ghostty](https://github.com/ghostty-org/ghostty), written by its authors.
 - `writing` was inspired by the unslop skill in [pstack](https://github.com/michael-denyer/pstack-claude), by Lauren Tan and ported to Claude Code by Michael Denyer.

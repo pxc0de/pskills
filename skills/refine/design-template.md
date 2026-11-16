@@ -13,7 +13,11 @@ Status: refined on <date> from [`idea.md`](idea.md). Nothing is built.
 
 ## Who it is for
 
-<The person, what they use today, and why they would switch. Then the one part only this product does.>
+<The person, what they use today, and why they would switch.>
+
+## What it must do well
+
+<The one thing at the centre of the product, and what the owner said makes it good. Every decision below was checked against this.>
 
 ## How it is used
 
@@ -21,15 +25,17 @@ Status: refined on <date> from [`idea.md`](idea.md). Nothing is built.
 
 ## Decisions
 
-Group related decisions under a subheading. Write one table row per decision.
+Group related decisions under a subheading. Put the decisions that are expensive to change first. Write one table row per decision.
 
 | Decision | Why | Also considered |
 | --- | --- | --- |
-| <the choice, in concrete terms> | <the reason> | <options that lost, including the idea file's original decision if it was replaced> |
+| <the choice, in concrete terms> | <the reason> | <options that lost, and which product uses each> |
+
+When the owner chose against the interviewer's recommendation, add **(recommended instead: <the recommendation>)** to the Decision cell. When the owner did not know and took the recommendation for now, add **(provisional: <what would settle it>)**.
 
 ## Order of work
 
-<Numbered steps. Each step is usable when it is finished. Say what each step must prove before the next one starts.>
+<Numbered steps. Each step is usable when it is finished, and the part only this product does comes early. Say what each step must prove before the next one starts.>
 
 ## Left out of the first version
 
@@ -52,11 +58,11 @@ Group related decisions under a subheading. Write one table row per decision.
 
 ## Open questions
 
-<Questions that remain, and which step of work each one blocks.>
+<Questions that remain, and which step of work each one blocks. Say when a question needs a prototype, and what the prototype must show.>
 
 ## Changes from the idea
 
 | Change | Why | Owner's response |
 | --- | --- | --- |
-| <what the proposal changed, or would have changed> | <the concrete reason> | <accepted, or rejected with the owner's reason and the consequence they accepted> |
+| <where the design departs from the idea file, or would have> | <the concrete reason> | <accepted, or rejected with the owner's reason and the consequence they accepted> |
 ```

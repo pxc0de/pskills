@@ -1,7 +1,7 @@
 {
   "name": "pskills",
   "description": "A collection of agent skills in the standard SKILL.md format, usable in Claude Code, Codex, Cursor, pi and other agents.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "MIT",
   "author": {
     "name": "pxc0de"

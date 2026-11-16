@@ -18,6 +18,8 @@ Restate the question as one sentence that names the decision. For example, "How 
 
 Look at the current project first. Note its language, how it is deployed, and what its owners have already decided. An approach built for a hosted product can be useless in a self-hosted one.
 
+The question can also be about the whole product, as in "what do people use today to plan a trip with friends, and where does each option stop?" Then the products you choose in step 2 are the ones closest to the idea, and the finding for each is what it does and where it stops short.
+
 If the user gave no question and the conversation does not suggest one, ask what they are trying to decide.
 
 ## 2. Choose the products
@@ -63,7 +65,7 @@ Report the approach, and do not copy the code. If the user wants to reuse code f
 
 ## Report format
 
-Write a report the user can read in a minute. Use everyday words, and define a technical term the first time you use it.
+Write a report the user can read in a minute. Write for an engineer who may not work in this field. Use the correct technical terms, and say what a term means the first time when it belongs to a specialty.
 
 ```markdown
 **Question:** <the decision in one sentence>
@@ -87,6 +89,6 @@ Sources: <links to the files or pages you read>
 
 ## Short form
 
-Another skill can call this one for a single question inside a longer conversation. `brainstorm` does this before it asks each question, and `refine` does it for a proposal. Do the same research and return less. Give two or three lines on what other products do, each labelled with how you know it, and name the approaches that are good enough to offer as options. The calling skill presents them to the user.
+Another skill can call this one for a single question inside a longer conversation. `brainstorm` does this to find what already exists for an idea, and `refine` does it before it asks each design question. Do the same research and return less. Give two or three lines on what other products do, each labelled with how you know it, and name the approaches that are good enough to offer as options. The calling skill presents them to the user.
 
 Match the research effort to the question. Read a repository for a decision that shapes the whole design. Take a quick look for a small one.
