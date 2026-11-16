@@ -1,0 +1,29 @@
+title = "Push notifications from a self-hosted server to a centrally published app"
+stress = "A question where memory is tempting and the details matter. The answer has to fit a self-hosted project with no budget."
+
+opening = "how do self-hosted apps send push notifications to an iOS app that the project publishes centrally, when the people hosting it don't have our Apple credentials?"
+
+persona = """
+You are a backend engineer and the maintainer of Hearth, a self-hosted home automation hub \
+written in Go. The project publishes one iOS app in the App Store, and each user runs their \
+own Hearth server at home. The README in the working folder describes it.
+
+You write briefly and technically. You know backend work well and have never shipped push \
+notifications before.
+
+Behaviours:
+- Answer any follow-up question in a sentence or two.
+- If the agent's answer includes a term from Apple's push system that it did not explain, such \
+as "APNs provider token" or "device token", ask what it means.
+- When the agent has given you its findings and a recommendation, end the conversation.
+"""
+
+hidden_facts = [
+  "The project has no budget. A paid push service or anything with a monthly bill is out.",
+  "Notification text can include which door was opened and when. You do not want any server run by the project to be able to read it.",
+]
+
+[[assertions]]
+id = "privacy-and-cost-accounted"
+kind = "outcome"
+text = "The recommendation accounts for the project having no budget and for notification content needing to stay unreadable by a project-run relay, either because the agent asked or because the final report addresses both."

@@ -1,0 +1,94 @@
+# Shared settings for every refine case.
+
+purpose = """
+The user has a written idea file at docs/idea.md that says what they want to build and why. The \
+session should turn it into a design someone could build from: every decision the design needs \
+is found, put to the owner, and written down concretely with its reason. The result is \
+docs/design.md. The owner makes the decisions. Nothing is built.
+"""
+
+baseline_prompt = """
+Turn the idea in docs/idea.md into a design I can build from. Ask me whatever you need to \
+decide it properly, then write the result to docs/design.md. Don't build anything.
+
+{opening}
+"""
+
+deliverable = "docs/design.md"
+max_user_turns = 14
+
+reader_task = """
+You are about to build the first step of work described in this design. List every question \
+you would have to ask someone before you could start, because the design does not answer it.
+"""
+
+[[checks]]
+id = "no-agreement-tags"
+kind = "outcome"
+type = "forbid_in_agent_turns"
+pattern = '''(?im)(?:[,.;:—–-]\s*(?:ok|okay|right|yeah|yes|fair|no)\?|\b(?:does (?:that|this|it) make sense|makes? sense|sounds? good|is that ok(?:ay)?|ok(?:ay)? with you|with me so far|following me)\?)\s*$'''
+why = "No agent line ends by asking for agreement, such as \"OK?\" or \"does that make sense?\""
+
+[[checks]]
+id = "no-praise-openers"
+kind = "outcome"
+type = "forbid_in_agent_turns"
+pattern = '''(?im)^\s*(?:(?:that(?:'s| is) an? |what an? )?(?:great|good|excellent|nice|awesome|fantastic|smart|sharp|lovely)\s+(?:question|point|idea|call|instinct|catch|thinking|observation)\b|(?:great|perfect|awesome|excellent|fantastic|love it|love that)[!.])'''
+why = "No agent message opens a line with praise for the user."
+
+[[checks]]
+id = "idea-file-untouched"
+kind = "outcome"
+type = "file_unchanged"
+path = "docs/idea.md"
+why = "The idea file is left unchanged."
+
+[[assertions]]
+id = "owner-saw-every-decision"
+kind = "outcome"
+text = "Every significant decision in the design was either answered by the owner or shown to the owner before it was written down. The design contains no significant decision the owner never saw."
+
+[[assertions]]
+id = "builder-can-start"
+kind = "outcome"
+text = "A builder who has only the design file could start the first step of work: the step is named, and what it needs is decided."
+
+[[assertions]]
+id = "decisions-are-concrete"
+kind = "outcome"
+text = "Decisions in the design are stated concretely, with values, limits, wording or rules where they apply, and each has a reason. The options that lost are recorded."
+
+[[assertions]]
+id = "failure-is-designed"
+kind = "outcome"
+text = "The design says what the person using the product sees and can do when something fails, not only what happens when everything works."
+
+[[assertions]]
+id = "peer-voice"
+kind = "outcome"
+text = "The agent spoke to the owner as one engineer to another: no praise or reassurance, no explanations of things every engineer knows, and no simplified wording that hides a technical term or a trade-off."
+
+[[assertions]]
+id = "claims-checked-first"
+kind = "behaviour"
+text = "Before asking design questions, the agent restated the idea and checked the claims the idea file depends on at their source, using tools (tool lines appear before the first round of questions)."
+
+[[assertions]]
+id = "asked-in-rounds"
+kind = "behaviour"
+text = "Questions came in rounds of several independent questions, and no question depended on the answer to another question in the same round."
+
+[[assertions]]
+id = "recommendation-every-time"
+kind = "behaviour"
+text = "Every question came with one recommended answer and a short reason for it."
+
+[[assertions]]
+id = "real-products-in-questions"
+kind = "behaviour"
+text = "Questions about significant decisions said what named existing products do, and the agent said which of those claims it had checked and which it recalled."
+
+[[assertions]]
+id = "defaults-listed"
+kind = "behaviour"
+text = "Decisions with one sensible answer were shown to the owner as a short list of defaults to object to, not asked as full questions and not decided silently."

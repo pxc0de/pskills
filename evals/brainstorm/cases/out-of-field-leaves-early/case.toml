@@ -1,0 +1,46 @@
+title = "Expert outside their field who leaves early"
+stress = "The idea reaches into web security and frontend, which the user does not know. They answer 'I don't know' honestly, resent being talked down to, and leave before the session is finished."
+
+opening = "I want a way to share our model evaluation dashboards with clients. Right now I export PDFs and email them, which is embarrassing."
+
+persona = """
+You are a senior machine learning engineer at a twelve-person consultancy. You know PyTorch, \
+evaluation methodology, Python, Docker and AWS basics very well. You know little about web \
+authentication or frontend work. You know what an API and a database are. You do not know what \
+SSO, OAuth, a signed URL, row-level security or server-side rendering mean.
+
+You write in full sentences and you are a fast learner.
+
+Behaviours:
+- If the agent uses a web or security term you do not know without saying what it is, ask \
+"what's that?" once. If the explanation is good, engage with it properly.
+- If the agent explains something every engineer knows, such as what an API or a database is, \
+or checks whether you are following ("does that make sense?"), get annoyed and say so: "I'm an \
+engineer, you can skip that."
+- When asked how login or access should work, say you don't know, because you really don't. \
+Ask what the agent thinks.
+- After about eight of your replies, say you have to leave for a meeting and ask the agent to \
+wrap up with what you have. Then end the conversation.
+"""
+
+hidden_facts = [
+  "Your clients are in regulated industries: two banks and a hospital group. Each client must see only their own results. A leak between clients would end the contract.",
+  "The dashboards today are Streamlit apps that run on your laptop or an internal VM and read evaluation results from Parquet files in S3.",
+  "The people who look at the dashboards on the client side are non-technical managers, plus one technical reviewer per client who wants to drill into individual failure examples.",
+  "Nobody at your company can be on call for a production web service. Whatever this is must need almost no operating.",
+]
+
+[[assertions]]
+id = "unclear-parts-recorded"
+kind = "behaviour"
+text = "The user left before the idea was fully clear. The idea file records what was still unclear or undecided, and does not present the idea as settled."
+
+[[assertions]]
+id = "specialist-terms-explained"
+kind = "outcome"
+text = "Web and security terms outside the user's field were explained in a clause the first time they were used, without the user having to ask, and the correct term was still used."
+
+[[assertions]]
+id = "view-offered-not-imposed"
+kind = "outcome"
+text = "When the user said they did not know how access should work, the agent gave its own view with a reason, and the idea file does not record that view as the user's decision."

@@ -1,0 +1,57 @@
+# Shared settings for every writing case.
+
+purpose = """
+The user has a piece of text and wants it edited so that it is plain, makes its point early, \
+and does not read as machine-written. Every fact, number, command and file path in the original \
+has to survive. The result is the edited file.
+"""
+
+baseline_prompt = "{opening}"
+
+max_user_turns = 3
+
+[[checks]]
+id = "no-em-dashes"
+kind = "outcome"
+type = "forbid_in_deliverable"
+pattern = "—"
+why = "The edited text has no em dashes."
+
+[[checks]]
+id = "no-inflated-words"
+kind = "outcome"
+type = "forbid_in_deliverable"
+pattern = '(?i)\b(?:seamless(?:ly)?|robust|crucial|delve|leverag\w+|effortless(?:ly)?|cutting-edge|powerful|tapestry|testament|landscape|game-chang\w+|unlock\w*|elevate\w*|supercharge\w*)\b'
+why = "The edited text has none of the words chosen to sound impressive."
+
+[[checks]]
+id = "no-emoji"
+kind = "outcome"
+type = "forbid_in_deliverable"
+pattern = "[\U0001F300-\U0001FAFF☀-➿]"
+why = "The edited text has no decorative emoji."
+
+[[assertions]]
+id = "facts-survive"
+kind = "outcome"
+text = "Every fact, number, name, command, flag and file path in the original file is still present and still correct in the edited file. Compare the file before the session with the file after it, item by item."
+
+[[assertions]]
+id = "nothing-invented"
+kind = "outcome"
+text = "The edited file makes no claim that the original did not make."
+
+[[assertions]]
+id = "point-comes-first"
+kind = "outcome"
+text = "The edited file says what the thing is and does in its first two sentences, in terms specific to this project."
+
+[[assertions]]
+id = "reads-as-a-person"
+kind = "outcome"
+text = "The edited file has no sentence that says nothing (mood in place of fact, empty closing lines, announcements of what is about to be said), no slogans, and no bold scattered for emphasis."
+
+[[assertions]]
+id = "changes-reported-briefly"
+kind = "behaviour"
+text = "After editing, the agent named the main changes in a line or two and did not list every edit."

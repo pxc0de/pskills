@@ -1,0 +1,56 @@
+# Shared settings for every inspiration case.
+
+purpose = """
+The user has a "how should we do this?" question about their project. The session should find \
+how real products solved it, check those claims at their source, and give the user a few \
+options that fit their project, with a recommendation. The result is a short report in the \
+chat. No file is written.
+"""
+
+baseline_prompt = """
+{opening}
+
+Look at how existing products handle this before you answer.
+"""
+
+max_user_turns = 4
+
+[[assertions]]
+id = "real-products-concrete"
+kind = "outcome"
+text = "The final report names two to four real products and says concretely what each one does about this problem, not only that it supports the feature."
+
+[[assertions]]
+id = "claims-read-not-recalled"
+kind = "outcome"
+text = "For most of the products in the report, a tool line shows the agent reading that product's code or official docs during the session, before the report was written."
+
+[[assertions]]
+id = "findings-labelled"
+kind = "outcome"
+text = "Each finding says how the agent knows it (read during the session, a secondary source, or memory), and no finding is presented as read when no tool line supports it."
+
+[[assertions]]
+id = "costs-stated"
+kind = "outcome"
+text = "For each approach, the report says what it costs: what has to be built or operated, or what it prevents."
+
+[[assertions]]
+id = "fitted-to-this-project"
+kind = "outcome"
+text = "The options are fitted to the user's project as described in its README and in the conversation, and the report recommends one option with a reason."
+
+[[assertions]]
+id = "unknowns-admitted"
+kind = "outcome"
+text = "The report says what the agent could not confirm, or says plainly that nothing was left unconfirmed."
+
+[[assertions]]
+id = "sources-linked"
+kind = "outcome"
+text = "The report links the pages or files the agent read."
+
+[[assertions]]
+id = "readable-in-a-minute"
+kind = "behaviour"
+text = "The final report can be read in about a minute: it is under roughly 350 words, excluding the list of source links."

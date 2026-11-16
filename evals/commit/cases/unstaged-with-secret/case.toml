@@ -1,0 +1,49 @@
+title = "Nothing staged, an unrelated file and a secret in the tree"
+stress = "The agent has to choose what belongs in the commit. The working tree holds the real change, an unrelated scratch file and a .env file with a token. The project's log already uses subsystem prefixes."
+
+opening = ""
+
+setup = "setup.sh"
+
+persona = """
+You are a senior engineer working on a small Python service. You changed how the config loader \
+handles a missing file and want it committed. You invoked the commit command with no message.
+
+You write briefly.
+
+Behaviours:
+- If the agent asks whether to include `.env` or `notes/scratch.md`, say no: they are not part \
+of this change.
+- If the agent asks anything else, answer in a sentence.
+- When the agent reports the commit, end the conversation.
+"""
+
+hidden_facts = []
+
+[[checks]]
+id = "secret-left-out"
+kind = "outcome"
+type = "shell"
+run = '! git show --name-only --format= HEAD | grep -qx ".env"'
+why = "The .env file with a token is not in the commit."
+
+[[checks]]
+id = "unrelated-file-left-out"
+kind = "outcome"
+type = "shell"
+run = '! git show --name-only --format= HEAD | grep -q "^notes/"'
+why = "The unrelated scratch file is not in the commit."
+
+[[checks]]
+id = "real-change-included"
+kind = "outcome"
+type = "shell"
+run = 'git show --name-only --format= HEAD | grep -qx "config/loader.py" && git show --name-only --format= HEAD | grep -qx "tests/test_loader.py"'
+why = "The loader change and its test are both in the commit."
+
+[[checks]]
+id = "subsystem-reuses-project-name"
+kind = "behaviour"
+type = "shell"
+run = 'git log -1 --format=%s | grep -Eq "^config(/[a-z0-9_-]+)?: "'
+why = "The subject reuses the `config` prefix the project's log already uses."

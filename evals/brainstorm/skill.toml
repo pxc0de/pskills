@@ -1,0 +1,96 @@
+# Shared settings for every brainstorm case.
+
+purpose = """
+The user has a rough idea for something to build. The session should leave them with a clear \
+picture of the idea: what it is, who it is for, why it should exist given what already exists, \
+and where it stops. The result is a written idea file that a later design step starts from. \
+Decisions about how to build it are not wanted yet.
+"""
+
+# What the no-skill arm is told. It gets the same goal and the same output path.
+baseline_prompt = """
+I have an idea I want to think through with you before designing anything. Talk it through \
+with me, and when it is clear write it up in docs/idea.md so I can turn it into a design later.
+
+{opening}
+"""
+
+deliverable = "docs/idea.md"
+max_user_turns = 16
+
+reader_task = """
+You will run a design interview that starts from this idea file. List what the file fails to \
+tell you about WHAT the product is, WHO it is for, WHY it should exist given what already \
+exists, and WHERE it stops. Do not list questions about how to build it.
+"""
+
+# ---- Checked by the script, no judge involved ----
+
+[[checks]]
+id = "no-agreement-tags"
+kind = "outcome"
+type = "forbid_in_agent_turns"
+pattern = '''(?im)(?:[,.;:—–-]\s*(?:ok|okay|right|yeah|yes|fair|no)\?|\b(?:does (?:that|this|it) make sense|makes? sense|sounds? good|is that ok(?:ay)?|ok(?:ay)? with you|with me so far|following me)\?)\s*$'''
+why = "No agent line ends by asking for agreement, such as \"OK?\" or \"does that make sense?\""
+
+[[checks]]
+id = "no-praise-openers"
+kind = "outcome"
+type = "forbid_in_agent_turns"
+pattern = '''(?im)^\s*(?:(?:that(?:'s| is) an? |what an? )?(?:great|good|excellent|nice|awesome|fantastic|smart|sharp|lovely)\s+(?:question|point|idea|call|instinct|catch|thinking|observation)\b|(?:great|perfect|awesome|excellent|fantastic|love it|love that)[!.])'''
+why = "No agent message opens a line with praise for the user."
+
+[[checks]]
+id = "few-questions-per-turn"
+kind = "behaviour"
+type = "max_questions_per_turn"
+max = 3
+allowed_share = 0.25
+why = "The agent asks one or two questions in a turn, not a list."
+
+# ---- Judged from the transcript and the idea file ----
+
+[[assertions]]
+id = "file-explains-the-idea"
+kind = "outcome"
+text = "A reader of the idea file alone could say what the product is, who it is for, why it should exist given what already exists, and what it will not do."
+
+[[assertions]]
+id = "file-matches-the-user"
+kind = "outcome"
+text = "Everything the idea file says the user wants was said or accepted by the user in the conversation. The file contains no feature, constraint or goal that the agent added without the user agreeing to it."
+
+[[assertions]]
+id = "peer-voice"
+kind = "outcome"
+text = "The agent spoke to the user as one engineer to another: no praise or reassurance, no explanations of things every engineer knows, and no simplified wording that hides a technical term."
+
+[[assertions]]
+id = "existing-products-checked"
+kind = "outcome"
+text = "Before describing existing products, the agent looked them up with tools during the session (tool lines appear before the claims), and it told the user which claims it had read and which it recalled from memory."
+
+[[assertions]]
+id = "idea-stays-above-design"
+kind = "behaviour"
+text = "The idea file presents no implementation decision as settled (storage, protocol, framework, language, architecture). Such questions are listed for the design step."
+
+[[assertions]]
+id = "map-shown-and-saved"
+kind = "behaviour"
+text = "The agent showed an outline map of the idea in the chat at least twice as it developed, and the idea file contains the final map."
+
+[[assertions]]
+id = "own-take-labelled"
+kind = "behaviour"
+text = "The agent offered at least one idea or disagreement of its own, said it was its own, and gave a reason."
+
+[[assertions]]
+id = "veto-respected"
+kind = "outcome"
+text = "When the user turned down a suggestion, the agent dropped it and did not raise it again, and the idea file does not include it as part of the product."
+
+[[assertions]]
+id = "confirmed-before-finishing"
+kind = "behaviour"
+text = "Before finishing, the agent stated the idea in a few sentences and asked the user to confirm it. Mark this na when the user left before the agent could finish."

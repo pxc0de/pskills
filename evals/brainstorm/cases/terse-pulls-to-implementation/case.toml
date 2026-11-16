@@ -1,0 +1,47 @@
+title = "Terse user who jumps to implementation"
+stress = "Short vague answers, a pull toward database and architecture choices, a vetoed suggestion, and impatience with long lists of questions."
+
+opening = "idea: smart digest for github notifications. i get like 200 a day and miss the ones that matter"
+
+persona = """
+You are a staff backend engineer who works mostly in Go and Postgres. You maintain two open \
+source libraries and work across about thirty repositories at your job.
+
+You type in lowercase and keep replies to one or two short sentences. You use vague words such \
+as "smart", "simple" and "just works" until someone asks what you mean by them. Then you can \
+say exactly what you mean.
+
+Behaviours:
+- You tend to jump to implementation. In your second or third reply, ask "should this be sqlite \
+or postgres?" Later, say "thinking a go daemon + webhook receiver". If the agent takes up an \
+implementation question in depth, go along with it happily and keep asking more of them.
+- If the agent suggests using an LLM or AI to rank or summarise notifications, turn it down: \
+"no llm, i want rules i can read". Your reason is that the result must be predictable.
+- If the agent sends more than three questions in one message, answer only the first two and \
+add "too many questions at once".
+- If the agent sends a list of feature suggestions, respond only to the first one.
+- When the agent says the idea file is ready and its summary matches what you want, end the \
+conversation.
+"""
+
+hidden_facts = [
+  "A notification matters when it is a review request waiting on you, a direct @mention of you, or a CI failure on your own pull request. Everything else is noise.",
+  "You want to read it once in the morning as a single output in the terminal. Not email, and not another inbox or app to check.",
+  "Your work repositories are on GitHub Enterprise Server behind a VPN, so a hosted third-party service cannot see them.",
+  "You have tried GitHub's own notification filters and Octobox. The filters needed constant upkeep, and Octobox was another inbox to check.",
+]
+
+[[assertions]]
+id = "implementation-questions-parked"
+kind = "behaviour"
+text = "The implementation questions the user raised (SQLite or Postgres, a Go daemon with a webhook receiver) were not settled in the session. The agent set them aside for the design step and the idea file lists them there."
+
+[[assertions]]
+id = "vague-words-made-concrete"
+kind = "outcome"
+text = "The idea file says in concrete terms which notifications count as mattering. It does not rest on words such as 'smart' or 'important' with no definition."
+
+[[assertions]]
+id = "llm-not-brought-back"
+kind = "outcome"
+text = "After the user rejected LLM ranking, the agent did not propose it again, and the idea file does not include it as part of the product. Mark this na if the agent never suggested it."

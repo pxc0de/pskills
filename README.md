@@ -48,6 +48,19 @@ When you install the collection as a Claude Code plugin, each command takes the 
 /refine docs/idea.md
 ```
 
+## Testing the skills
+
+`evals/` holds test cases for each skill. A case describes a user to simulate, the facts that user holds back, and the checks a good session should pass.
+
+The `stress-test` skill in `.claude/skills/` runs them. It is a tool for working on this repository and is not part of the published collection. Open the repository in Claude Code and invoke it.
+
+```
+/stress-test refine
+/stress-test
+```
+
+It plays each case as a full conversation between separate headless agents, with the skill, without it, and with its last committed version, all on one model. Judges that do not know which is which grade the sessions and compare them. It then edits the skill to fix what the evidence shows, reruns to confirm, and leaves the changes uncommitted. Runs go to `~/.cache/skill-stress-test/`.
+
 ## Credits
 
 - `refine` builds on the grilling skills in [mattpocock/skills](https://github.com/mattpocock/skills) by Matt Pocock.

@@ -1,0 +1,55 @@
+title = "A passive owner outside their field, and an idea that contradicts itself"
+stress = "The idea file says clients see results live as soon as a run finishes and also that every result is signed off first. It calls the product fast, secure and simple to operate without saying what those mean. The owner agrees with everything unless a hidden fact is contradicted, and does not know web security."
+
+opening = "docs/idea.md"
+
+persona = """
+You are a senior machine learning engineer at a twelve-person consultancy. You wrote the idea \
+in docs/idea.md after a brainstorm and now want a design for it. You know PyTorch, evaluation \
+methodology, Python, Docker and AWS basics very well. You know little about web authentication \
+or frontend work. You do not know what SSO, OAuth, a signed URL, a magic link or row-level \
+security mean.
+
+You are busy and passive in this session. You write in full sentences but briefly.
+
+Behaviours:
+- Accept the agent's recommendation on every question ("yes, go with that", "fine", "your \
+call") unless it contradicts one of the facts you know. When it does, say so and state the fact.
+- If the agent points out that "live as soon as a run finishes" conflicts with "signed off \
+first", resolve it: sign-off wins. Results have been wrong before because of a label leak, and \
+an embarrassing correction went out to a client.
+- If the agent uses a web or security term you do not know without saying what it is, ask \
+"what's that?" once per term. Do not ask about a term the agent explained.
+- If the agent asks what "fast", "secure" or "simple to operate" mean to you, give a real \
+answer: pages open in a couple of seconds on hotel wifi; one client can never see another's \
+results; nobody gets paged.
+- When the agent says the design is written and summarises it, say it looks right and end the \
+conversation.
+"""
+
+hidden_facts = [
+  "Your clients are two banks and a hospital group. Each must see only their own results, and a leak between clients would end the contract.",
+  "Nobody at your company can be on call for a production web service. Whatever this is must need almost no operating.",
+  "Client staff sit behind corporate firewalls that block unfamiliar domains. The page has to be served from a subdomain of your company's own domain, which the clients have already allowlisted.",
+  "Evaluation results are Parquet files in an S3 bucket in your AWS account, one prefix per client.",
+]
+
+[[assertions]]
+id = "conflict-raised"
+kind = "outcome"
+text = "The agent noticed that 'clients see live results as soon as a run finishes' conflicts with 'every result is signed off by an engineer first', asked the owner which one holds, and the design is consistent with the answer."
+
+[[assertions]]
+id = "vague-words-made-concrete"
+kind = "outcome"
+text = "The design replaces the idea file's 'fast', 'secure' and 'simple to operate' with concrete behaviour, limits or rules for each of the three."
+
+[[assertions]]
+id = "specialist-terms-explained"
+kind = "outcome"
+text = "Web and security terms outside the owner's field were explained in a clause the first time they were used, along with the trade-off, so the owner had enough to disagree. The owner did not have to ask what a term meant."
+
+[[assertions]]
+id = "passive-owner-still-decided"
+kind = "outcome"
+text = "The agent did not treat the owner's passive agreement as licence to skip questions. The decisions that are expensive to change (how a client proves who they are, where it runs, how clients are kept apart) were each put to the owner with their trade-offs."

@@ -1,0 +1,52 @@
+title = "A false claim stated as fact, and an owner who pushes back"
+stress = "The idea file states that GitHub delivers notifications by webhook, which is false, and the claim carries no label. The owner chooses against one recommendation, answers one question with 'I don't know', and has already turned down LLM ranking."
+
+opening = "docs/idea.md"
+
+persona = """
+You are a staff backend engineer who works mostly in Go and Postgres. You wrote the idea in \
+docs/idea.md after a brainstorm last week and now want a design for it.
+
+You type in lowercase and keep replies short. You answer numbered questions by number.
+
+Behaviours:
+- If the agent tells you that GitHub cannot push notifications by webhook, accept it at once: \
+"ok so we poll, fine".
+- On the first question about what the digest looks like on screen, turn down the agent's \
+recommendation and choose a different option. If you need to name one, choose plain text with \
+no colour and no emoji. Your reason is that you pipe it into less and paste it into your notes.
+- When asked how to remember what was seen, or how to mark something as dealt with, say "i \
+don't know" and nothing more.
+- If the agent proposes LLM ranking or summarising, be annoyed: "already said no to that, it's \
+in the file".
+- If a round has more than eight questions, answer them and add that it is a lot at once.
+- When the agent says the design is written and its summary matches what you decided, end the \
+conversation.
+"""
+
+hidden_facts = [
+  "It has to cover two GitHub hosts at once: github.com for your open source work and your company's GitHub Enterprise Server behind a VPN. The digest is one list across both.",
+  "It runs only on your laptop, and the laptop is asleep at night. Nothing can be listening for incoming requests, so it has to fetch when you run it.",
+  "Access tokens must be stored in the macOS keychain and never in a plain config file. Company policy requires it.",
+  "You want the rules in a plain text file that you can keep in your dotfiles repository.",
+]
+
+[[assertions]]
+id = "false-webhook-claim-caught"
+kind = "outcome"
+text = "The agent established that GitHub has no webhook that delivers a user's notification inbox and that the notifications API has to be polled, told the owner, and the design does not rely on a webhook for this."
+
+[[assertions]]
+id = "turned-down-stays-down"
+kind = "outcome"
+text = "The agent did not propose LLM ranking or summarising, which the idea file records as turned down, and the design does not include it."
+
+[[assertions]]
+id = "against-recommendation-recorded"
+kind = "outcome"
+text = "The design records the on-screen format the owner chose against the agent's recommendation, and marks it as chosen against the recommendation or records what was recommended instead."
+
+[[assertions]]
+id = "dont-know-is-provisional"
+kind = "outcome"
+text = "The decision the owner answered with 'I don't know' (remembering what was seen, or marking as dealt with) appears in the design as provisional or open, not as a settled decision of the owner's."
