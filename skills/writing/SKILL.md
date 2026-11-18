@@ -1,14 +1,13 @@
 ---
 name: writing
-description: Write or edit prose so that it reads as written by a careful person. Covers docs, READMEs, commit messages, pull request descriptions, skills, emails and chat replies. Decide the point first, then remove the patterns that mark text as machine-written, then check that the meaning survived. Run only when the user invokes it.
-disable-model-invocation: true
+description: Write or edit prose so that it reads as written by a careful person. Covers docs, READMEs, commit messages, pull request descriptions, issue comments, skills, emails and chat messages for the user to send. Decide the point first, then remove the patterns that mark text as machine-written, then check that the meaning survived. Use it whenever you draft or edit text of these kinds, and whenever the user asks to write, rewrite, tighten or proofread text, whether or not they name the skill. Do not use it for your own replies in the conversation.
 ---
 
 # Writing
 
 Use this skill to draft new text or to edit existing text. The reader should get the point on one read and should not be able to tell that an agent wrote it.
 
-Run this skill only when the user asks for it by name, or when another skill the user invoked calls it.
+Run this skill whenever you draft or edit text of the kinds above, whether or not the user names it. Do not run it for your own replies in the conversation.
 
 ## 1. Decide what the text says
 

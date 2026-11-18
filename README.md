@@ -10,7 +10,7 @@ My collection of agent skills. Each skill is a folder with a `SKILL.md` file in 
 | `writing` | Writes or edits prose so that it is plain, makes its point early, and has none of the patterns that mark text as machine-written. |
 | `commit` | Commits the current changes with a `subsystem: summary` message and a prose description, authored by you alone with no co-author or tool attribution. |
 
-Every skill runs only when you invoke it. More skills will be added over time.
+`writing` and `commit` also run on their own when a task calls for them, such as editing a README or asking for a commit. The other skills run only when you invoke them. More skills will be added over time.
 
 ## Install
 

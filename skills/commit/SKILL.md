@@ -1,14 +1,13 @@
 ---
 name: commit
-description: Commit the current changes with a message in a fixed format, a subsystem prefix, a short imperative summary, optional references and a prose description. The commit is authored by the user alone, with no co-author or tool attribution. Run only when the user invokes it.
-disable-model-invocation: true
+description: Commit the current changes with a message in a fixed format, a subsystem prefix, a short imperative summary, optional references and a prose description. The commit is authored by the user alone, with no co-author or tool attribution. Use it whenever the user asks for a commit, in any wording, such as "commit this", "make a commit" or "check this in", whether or not they name the skill. Never commit when the user has not asked.
 ---
 
 # Commit
 
 Write a commit message in the format below and create the commit.
 
-Run this skill only when the user asks for it by name.
+Run this skill whenever the user asks for a commit, whether or not they name the skill. Do not commit on your own initiative.
 
 ## Author
 
